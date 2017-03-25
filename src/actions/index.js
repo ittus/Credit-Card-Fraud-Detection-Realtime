@@ -42,10 +42,10 @@ export function fetchTransaction(filters) {
         axios.get(FETCH_MAP_TRANSACTION_URL)
             .then((response)=>{
                 dispatch(fetchMapTransactionSuccess(response, filters));
-                dispatch(addMessage("Data received at " + moment().format("dddd, MMMM Do YYYY, h:mm:ss a"), "success"));
+                dispatch(addMessage("Last update: " + moment().format("hh:mm:ss a"), "success"));
             }).catch((error) => {
                 console.log(error);
-                dispatch(addMessage("Can't receive transactions, please try again later!", "danger"));
+                dispatch(addMessage("Failed to update!", "danger"));
             });
     }
 };

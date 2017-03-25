@@ -20,7 +20,7 @@ export const clusterMarker = ({
         let borderColor = "#30cb00";
         let blinkClass = '';
 
-        if (fraud && (fraud != 0)) {
+        if (fraud && (fraud != 0) && text > 5) {
             markerColor = '#DE1717';
             borderColor = "#DE1717";
             blinkClass = 'blink_me';

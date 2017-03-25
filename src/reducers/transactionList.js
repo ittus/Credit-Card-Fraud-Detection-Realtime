@@ -83,6 +83,18 @@ function mapData(data) {
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
     case FETCH_TRANSACTION:
+        // action.data = {
+        //     NonFraud: 0,
+        //     Fraud: 0,
+        //     Transactions: [
+        //         {
+        //             ID: 1,
+        //             Fraud: -1,
+        //             Latitude: 34,
+        //             Longitude: -95
+        //         }
+        //     ]
+        // };
         // let returnData = data; // test
         let returnData = action.data.Transactions? mapData(action.data.Transactions): [];
         let numFraud = action.data.Fraud?action.data.Fraud: 0;

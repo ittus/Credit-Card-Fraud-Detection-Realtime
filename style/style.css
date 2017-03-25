@@ -16,11 +16,11 @@
 
 .summary-element {
     display: block;
-    height: 100px;
+    height: 30px;
 }
 
 .blink_me {
-  animation: blinker 0.5s linear infinite;
+  /*animation: blinker 1s linear infinite;*/
 }
 
 @keyframes blinker {
