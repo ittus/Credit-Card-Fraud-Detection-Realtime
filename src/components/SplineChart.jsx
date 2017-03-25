@@ -1,6 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 const ReactHighcharts = require('react-highcharts');
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 class SplineChart extends Component {
   shouldComponentUpdate(nextProps, nextState) {
@@ -24,9 +25,7 @@ class SplineChart extends Component {
                    // set up the updating of the chart each second
                    var series = this.series[0];
 
-                   self.intervalFunc = setInterval(function () {
-                       console.log(series);
-                       var x = (new Date()).getTime(), // current time
+                   self.intervalFunc = setInterval(function () {                       var x = (new Date()).getTime(), // current time
                            y = self.props.numFraud;
                        series.addPoint([x, y], true, true);
                    }, 2000);
@@ -38,7 +37,12 @@ class SplineChart extends Component {
        },
        xAxis: {
            type: 'datetime',
-           tickPixelInterval: 150
+           tickPixelInterval: 150,
+           labels: {
+               formatter: function() {
+                   return moment.unix(this.value/1000).format("h:mm:ss");
+               }
+           }
        },
        yAxis: {
            title: {
