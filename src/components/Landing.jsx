@@ -58,7 +58,8 @@ class Landing extends Component {
 
               </Row>
               <div></div>
-              <SimpleMap className="map-component" transactions={this.props.transactions}/>
+              <SimpleMap className="map-component" transactions={this.props.transactions}
+                  totalPoint={this.props.transactions? this.props.transactions.length: 0}/>
               <div className="margin-top-md">
                   {message}
               </div>

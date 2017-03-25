@@ -184,14 +184,27 @@ export default class SimpleMap extends Component {
   // }
   render() {
       console.log(this.getMarkerList());
-
+     let fraudData = [];
+     let nonFraudData = [];
+     if (this.props.transactions && this.props.transactions.length > 0) {
+         for (let idx in this.props.transactions) {
+             if (this.props.transactions[idx].fraud == -1) {
+                 fraudData.push(this.props.transactions[idx]);
+             } else {
+                 nonFraudData.push(this.props.transactions[idx]);
+             }
+         }
+     }
     return (
       <ClusterMap
         bootstrapURLKeys={{
             key: 'AIzaSyA4bAq5M2WWcQkv0RDpoIIF0Aywocv0qxY'
         }}
         defaultCenter={this.props.center}
-        markers={this.props.transactions}
+        markers={nonFraudData}
+        markersFraud = {fraudData}
+        totalPoint={this.props.totalPoint}
+        clusterRadius={(this.props.totalPoint && this.props.totalPoint > 200) ? (this.props.totalPoint * 0.05): 30}
         defaultZoom={this.props.zoom}>
 
       </ClusterMap>

@@ -164,7 +164,7 @@ export const gMap = ({
   style, hoverDistance, options,
   mapProps: { center, zoom },
   onChange, onChildMouseEnter, onChildMouseLeave,
-  clusters,
+  clusters, totalPoint, fraudClusters
 }) => (
   <GoogleMapReact
     style={style}
@@ -185,8 +185,17 @@ export const gMap = ({
       clusters
         .map(({ ...markerProps, id, numPoints }) => (
           numPoints === 1
-            ? <SimpleMarker key={id} {...markerProps} />
-            : <ClusterMarker key={id} {...markerProps} />
+            ? <SimpleMarker key={id} {...markerProps} fraud={0}/>
+        : <ClusterMarker key={id} {...markerProps} totalPoint={totalPoint} fraud={0}/>
+        ))
+    }
+    {
+
+      fraudClusters
+        .map(({ ...markerProps, id, numPoints }) => (
+          numPoints === 1
+            ? <SimpleMarker key={id} {...markerProps} fraud={-1} />
+        : <ClusterMarker key={id} {...markerProps} totalPoint={totalPoint} fraud={-1}/>
         ))
     }
   </GoogleMapReact>
@@ -206,6 +215,7 @@ export const gMapHOC = compose(
       padding: 0,
       flex: 1,
     },
+    totalPoint: 0
   }),
   // withState so you could change markers if you want
   // withState(
@@ -275,6 +285,47 @@ export const gMapHOC = compose(
     ['clusters', 'hoveredMarkerId'],
     ({ clusters, hoveredMarkerId }) => ({
       clusters: clusters
+        .map(({ ...cluster, id }) => ({
+          ...cluster,
+          hovered: id === hoveredMarkerId,
+        })),
+    })
+  ),
+  // precalculate clusters if markers data has changed
+  withPropsOnChange(
+    ['markersFraud'],
+    ({ markersFraud = [], clusterRadius, options: { minZoom, maxZoom } }) => ({
+      getFraudCluster: supercluster(
+        markersFraud,
+        {
+          minZoom, // min zoom to generate clusters on
+          maxZoom, // max zoom level to cluster the points on
+          radius: clusterRadius, // cluster radius in pixels
+        }
+      ),
+    })
+  ),
+  // get clusters specific for current bounds and zoom
+  withPropsOnChange(
+    ['mapProps', 'getFraudCluster'],
+    ({ mapProps, getFraudCluster }) => ({
+      fraudClusters: mapProps.bounds
+        ? getFraudCluster(mapProps)
+          .map(({ wx, wy, numPoints, points }) => ({
+            lat: wy,
+            lng: wx,
+            text: numPoints,
+            numPoints,
+            id: `${numPoints}_${points[0].id}`,
+          }))
+        : [],
+    })
+  ),
+  // set hovered
+  withPropsOnChange(
+    ['fraudClusters', 'hoveredMarkerId'],
+    ({ fraudClusters, hoveredMarkerId }) => ({
+      fraudClusters: fraudClusters
         .map(({ ...cluster, id }) => ({
           ...cluster,
           hovered: id === hoveredMarkerId,

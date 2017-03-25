@@ -6,13 +6,9 @@ import pure from 'recompose/pure';
 import { Motion, spring } from 'react-motion';
 
 
-let markerColor = "#30cb00";
-let borderColor = "#30cb00";
-
-
 export const clusterMarker = ({
   styles, text,
-  defaultMotionStyle, motionStyle,
+  defaultMotionStyle, motionStyle, totalPoint, fraud
 }) => (
   <Motion
     defaultStyle={defaultMotionStyle}
@@ -20,13 +16,28 @@ export const clusterMarker = ({
   >
   {
     ({ scale }) => {
+        let markerColor = "#30cb00";
+        let borderColor = "#30cb00";
+        let blinkClass = '';
+
+        if (fraud && (fraud != 0)) {
+            markerColor = '#DE1717';
+            borderColor = "#DE1717";
+            blinkClass = 'blink_me';
+        }
       let K_WIDTH = 16;
       let K_HEIGHT = 16;
-      K_WIDTH = K_WIDTH + text * K_WIDTH;
-      K_HEIGHT = K_HEIGHT + text * K_HEIGHT;
-      console.log(K_HEIGHT);
+      let factor = 0.2;
+      if (totalPoint && (totalPoint != 0)) {
+          if (totalPoint < 200) {
+              factor = 0.4;
+          }
+          K_WIDTH = (1 + text * factor) * K_WIDTH;
+          K_HEIGHT = (1 + text * factor) * K_HEIGHT;
+      }
+      console.log(K_WIDTH);
       return (<div
-            className={styles.marker}
+            className={styles.marker + ' ' + blinkClass}
             style={{
               transform: `translate3D(0,0,0) scale(${scale}, ${scale})`,
               position: 'absolute',

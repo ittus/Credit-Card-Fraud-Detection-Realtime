@@ -51,15 +51,15 @@ let data = [
     },
 ];
 
-for (let i = 0; i < 100; i++) {
-    let obj = {
-            id: (i+100),
-            lat: 39.1 + (-10 + Math.random()*20),
-            lng: -95.1 + (-20 + Math.random()*30),
-            fraud: Math.random() > 0.9
-    };
-    data.push(obj);
-}
+// for (let i = 0; i < 100; i++) {
+//     let obj = {
+//             id: (i+100),
+//             lat: 39.1 + (-10 + Math.random()*20),
+//             lng: -95.1 + (-20 + Math.random()*30),
+//             fraud: Math.random() > 0.9? -1: 0
+//     };
+//     data.push(obj);
+// }
 
 const INITIAL_STATE = { transactions: [], filters: null, isLoading: false, numFraud: 0, nonFraud: 0};
 
@@ -83,11 +83,13 @@ function mapData(data) {
 export default function (state = INITIAL_STATE, action) {
     switch (action.type) {
     case FETCH_TRANSACTION:
-        let returnData = data; // test
-        // let returnData = action.data.Transactions? mapData(action.data.Transactions): [];
+        // let returnData = data; // test
+        let returnData = action.data.Transactions? mapData(action.data.Transactions): [];
+        let numFraud = action.data.Fraud?action.data.Fraud: 0;
+        let nonFraud = action.data.NonFraud?action.data.NonFraud: 0;
         // console.log("returnData", returnData);
         // return { ...state, transactions: action.payload.data };
-        return { ...state, transactions: returnData, isLoading: false };
+        return { ...state, transactions: returnData, isLoading: false, numFraud: numFraud, nonFraud: nonFraud };
         break;
     case REQUEST_MAP_DATA:
         return { ...state, isLoading: true };
