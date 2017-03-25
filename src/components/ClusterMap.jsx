@@ -173,6 +173,9 @@ export const gMap = ({
         minZoom: 5,
         maxZoom: 15,
     }}
+    bootstrapURLKeys={{
+        key: 'AIzaSyA4bAq5M2WWcQkv0RDpoIIF0Aywocv0qxY'
+    }}
     hoverDistance={hoverDistance}
     center={center}
     zoom={zoom}
