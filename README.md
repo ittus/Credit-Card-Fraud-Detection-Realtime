@@ -1,25 +1,50 @@
-# ReduxSimpleStarter
+# Credit card fraud detection realtime - Front end
 
-Interested in learning [Redux](https://www.udemy.com/react-redux/)?
+This is front-end source code (React) of our Credit card Fraud detection system. This is a high scalability and intelligent system, heavily rely on AWS architecture. 
 
-###Getting Started###
+Our architecture
 
-There are two methods for getting started with this repo.
+![Architecture Image](images/architecture.png)
 
-####Familiar with Git?#####
-Checkout this repo, install dependencies, then start the gulp process with the following:
 
+## Feature
+
+- Use ReactJS/ Redux
+- Real time update map/chart (polling)
+- Map cluster (marker will be join with each other, inspired by [this](https://github.com/istarkov/google-map-clustering-example))
+- Data table with pagination
+- Ready to integrated with backend
+
+## Installation
+
+To start webpack-dev-server:
 ```
-	> git clone git@github.com:StephenGrider/ReduxSimpleStarter.git
-	> cd ReduxSimpleStarter
-	> npm install
-	> npm start
+> npm install
+> npm start
 ```
 
-####Not Familiar with Git?#####
-Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
+To start nodejs with dummy data:
+```
+> node server.js
+```
 
-```
-	> npm install
-	> npm start
-```
+## Demo
+
+Please check our demo at http://creditcard-frauddetection.coddeine.com/
+
+### Screenshot
+
+![Demo Imaage](images/fullscreen.png)
+
+### Video:
+
+[Youtube](https://www.youtube.com/watch?v=sM-YQwSRZi4)
+
+## Credits
+
+Team member
+- Serhat Artun
+- Adam Lee
+- Acer Jing Wei
+- Vu Minh Thang
+- ()

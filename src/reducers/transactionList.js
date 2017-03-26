@@ -65,19 +65,20 @@ const INITIAL_STATE = { transactions: [], filters: null, isLoading: false, numFr
 
 
 function mapData(data) {
-    if (data) {
-        return data.map(function(item, idx) {
-            return {
-                id: item.ID,
-                fraud: item.Fraud,
-                lat: item.Latitude,
-                lng: item.Longitude,
-
-            }
-        });
-    } else {
-        return [];
-    }
+    // if (data) {
+    //     return data.map(function(item, idx) {
+    //         return {
+    //             id: item.ID,
+    //             fraud: item.Fraud,
+    //             lat: item.Latitude,
+    //             lng: item.Longitude,
+    //
+    //         }
+    //     });
+    // } else {
+    //     return [];
+    // }
+    return data;
 };
 
 export default function (state = INITIAL_STATE, action) {

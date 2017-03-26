@@ -9,10 +9,8 @@ export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 export const REQUEST_MAP_DATA = "REQUEST_MAP_DATA";
 
 const BASE_URL = '/';
-// const FETCH_MAP_TRANSACTION_URL = BASE_URL + '';
-// const FETCH_TRANSACTION_URL = BASE_URL + '';
-const FETCH_TRANSACTION_URL = 'http://54.169.172.238:8080/region_query';
-const FETCH_MAP_TRANSACTION_URL = 'http://54.169.172.238:8080/transactions_map';
+const FETCH_TRANSACTION_URL = BASE_URL + 'api/region_query';
+const FETCH_MAP_TRANSACTION_URL = BASE_URL + 'api/transactions_map';
 
 export function addMessage(message, messClass) {
     return {

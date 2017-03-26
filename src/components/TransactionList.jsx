@@ -98,7 +98,7 @@ class TransactionList extends Component {
           header: 'Value',
           accessor: 'value',
           render: row => {
-              return <div>{row.row.value}</div>
+              return <div>{'$' + row.row.value}</div>
           }
         },{
           header: 'Fraud',

@@ -77,24 +77,25 @@ const INITIAL_STATE = {
 
 
 function mapData(data) {
-    if (data) {
-        return data.map(function(item, idx) {
-            return {
-                id: item.ID,
-                city: item.City,
-                county: item.County,
-                fraud: item.Fraud,
-                lat: item.Latitude,
-                lng: item.Longitude,
-                name: item.Name,
-                time: item.Time,
-                value: item.Value,
-                account: item.Account
-            }
-        });
-    } else {
-        return [];
-    }
+    // if (data) {
+    //     return data.map(function(item, idx) {
+    //         return {
+    //             id: item.ID,
+    //             city: item.City,
+    //             county: item.County,
+    //             fraud: item.Fraud,
+    //             lat: item.Latitude,
+    //             lng: item.Longitude,
+    //             name: item.Name,
+    //             time: item.Time,
+    //             value: item.Value,
+    //             account: item.Account
+    //         }
+    //     });
+    // } else {
+    //     return [];
+    // }
+    return data? data: [];
 }
 
 export default function (state = INITIAL_STATE, action) {

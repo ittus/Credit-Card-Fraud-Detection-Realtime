@@ -23,12 +23,12 @@
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^0.14.7",
     "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0",
-    "write-file-webpack-plugin": "^4.0.0"
+    "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
     "axios": "^0.15.3",
     "babel-preset-stage-1": "^6.1.18",
+    "express": "^4.15.2",
     "google-map-react": "^0.23.0",
     "highcharts": "^5.0.9",
     "lodash": "^3.10.1",
