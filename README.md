@@ -1,6 +1,6 @@
 # Credit card fraud detection realtime - Front end
 
-This is front-end source code (React) of our Credit card Fraud detection system. This is a high scalability and intelligent system, heavily rely on AWS architecture. 
+This is front-end source code (React) of our Credit card Fraud detection system. This is a high scalability and intelligent system, heavily rely on AWS architecture.
 
 Our architecture
 
@@ -47,4 +47,4 @@ Team member
 - Adam Lee
 - Acer Jing Wei
 - Vu Minh Thang
-- ()
+- Naresh Chebolu
