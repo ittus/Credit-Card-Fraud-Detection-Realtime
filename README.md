@@ -34,7 +34,7 @@ Please check our demo at http://creditcard-frauddetection.coddeine.com/
 
 ### Screenshot
 
-![Demo Imaage](images/fullscreen.png)
+![Demo Image](images/fullscreen.png)
 
 ### Video:
 

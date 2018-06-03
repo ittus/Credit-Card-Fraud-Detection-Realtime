@@ -1,4 +1,3 @@
-import axios from 'axios';
 import moment from 'moment';
 
 export const FETCH_TRANSACTION = "FETCH_TRANSACTION";
@@ -8,9 +7,8 @@ export const ADD_MESSAGE = "ADD_MESSAGE";
 export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 export const REQUEST_MAP_DATA = "REQUEST_MAP_DATA";
 
-const BASE_URL = '/';
-const FETCH_TRANSACTION_URL = BASE_URL + 'api/region_query';
-const FETCH_MAP_TRANSACTION_URL = BASE_URL + 'api/transactions_map';
+
+import * as API from '../api'
 
 export function addMessage(message, messClass) {
     return {
@@ -37,8 +35,9 @@ const fetchMapTransactionSuccess = (response, filters) => {
 
 export function fetchTransaction(filters) {
     return function(dispatch) {
-        axios.get(FETCH_MAP_TRANSACTION_URL)
+        API.fetchTransactions()
             .then((response)=>{
+              console.log('fetchTransactions', response)
                 dispatch(fetchMapTransactionSuccess(response, filters));
                 dispatch(addMessage("Last update: " + moment().format("hh:mm:ss a"), "success"));
             }).catch((error) => {
@@ -63,7 +62,7 @@ export function filterTransaction(filters) {
         queryStr += key + "=" + filters[key] + '&';
     }
     return function(dispatch) {
-        axios.get(FETCH_TRANSACTION_URL + '?' + queryStr)
+        API.fetchRegions()
             .then((response)=>{
                 dispatch(filterTransactionSuccess(response, filters));
                 dispatch(clearMessage());
