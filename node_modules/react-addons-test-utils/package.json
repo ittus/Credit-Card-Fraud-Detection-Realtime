@@ -1,0 +1,15 @@
+{
+  "name": "react-addons-test-utils",
+  "version": "0.14.8",
+  "main": "index.js",
+  "repository": "facebook/react",
+  "keywords": [
+    "react",
+    "react-addon"
+  ],
+  "license": "BSD-3-Clause",
+  "dependencies": {},
+  "peerDependencies": {
+    "react": "^0.14.8"
+  }
+}
